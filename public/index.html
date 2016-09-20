@@ -13,10 +13,32 @@
   </head>
   <body>
     <div id="content"></div>
-    <script type="text/babel" src="scripts/example.js"></script>
     <script type="text/babel">
-      // To get started with this tutorial running your own code, simply remove
-      // the script tag loading scripts/example.js and start writing code here.
+      
+      var CurrencyInputTextBox = React.createClass({
+
+        render: function() {
+          return(
+                  <div className = "inputContainer">
+                    <form>
+                      <input type="text" id="inputAmount" name="inputAmount" placeholder="Enter Amount"/> <br/>
+                      
+                      <input type="radio" name="convertFromTo" /> USD to INR <br/>
+                      <input type="radio" name="convertFromTo" /> INR to USD
+                      <br/>
+                      
+                    </form>
+                  </div>
+                );
+        }
+      });
+        
+      ReactDOM.render(
+        <CurrencyInputTextBox />,
+        document.getElementById('content')
+      );
+
+      
     </script>
   </body>
 </html>
