@@ -21,18 +21,31 @@
           return(
                   <div className = "inputContainer">
                     <form>
-                      <input type="text" id="inputAmount" name="inputAmount" placeholder="Enter Amount"/> <br/>
-                      
-                      <input type="radio" name="convertFromTo" /> USD to INR <br/>
-                      <input type="radio" name="convertFromTo" /> INR to USD
+                      <input type="text" id="inputAmount" name="inputAmount" placeholder="Enter Amount" onChange={this.handleChange} /> <br/>
+                      Convert from <br/>
+                      <input type="radio" name="convertFromTo" onClick={this.convertUsdToInr} /> USD to INR <br/>
+                      <input type="radio" name="convertFromTo" onClick={this.convertInrToUsd} /> INR to USD
                       <br/>
-                      
+                      <p></p>
                     </form>
                   </div>
                 );
+        },
+
+        handleChange: function(e) {
+          this.setState({ amount: e.target.value});
+        },
+
+        convertUsdToInr: function() {
+          console.log(this.props.exchangeRate);
+          this.setState({ converted: (this.state.amount * this.state.exchangeRate) })
+        },
+
+        convertInrToUsd: function() {
+          this.setState({ converted: (this.state.amount / this.state.exchangeRate).toFixed(2)  })
         }
       });
-        
+
       ReactDOM.render(
         <CurrencyInputTextBox />,
         document.getElementById('content')
